@@ -1,0 +1,69 @@
+body {
+    margin: 20px;
+}
+
+#link-adder {
+    display: flex;
+    gap: 8px;
+    width: 640px;
+}
+
+#message {
+    margin-bottom: 36px;
+}
+
+#how-to {
+    color: gray;
+}
+
+select {
+    width: 240px;
+}
+
+#copy-content-input {
+    width: 100%;
+}
+
+#copy-content {
+    margin-bottom: 24px;
+    width: 640px;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category {
+    width: 640px;
+}
+
+#categories-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 640px;
+}
+
+.button-row {
+    display: flex;
+    gap: 20px;
+    width: 640px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.btn {
+    width: 160px !important;
+}
+
+.ui-accordion-header {
+    cursor: pointer;
+    width: 640px;
+}
+
+.ui-accordion-content {
+    width: 100%;
+}

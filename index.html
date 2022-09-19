@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <title>Easy Clipboard</title>
+    <style>
+      .btn {
+        width: 130px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content" class="container">
+      <div id="link-adder">
+        <input id="nickname-input" placeholder="Nickname" />
+        <input id="copy-content-input" placeholder="Content to copy" />
+        <input id="category-input" list="categories-dropdown" placeholder="Folder"/>
+        <datalist id="categories-dropdown">
+        </datalist>
+        <button class="btn btn-success" id="add-link-button">Add</button>
+      </div>
+      <div id="message"></div>
+      <div id="how-to">
+        How to use Easy Clipboard:
+        <ul>
+            <li>Add a clipboard item using the input fields above</li>
+            <li>Right click on individual buttons to delete them</li>
+            <li>Right click on folder headers to delete whole sets of buttons</li>
+          </ul>     
+      </div>
+      <input id="copy-content" readonly />
+      <div id="categories-list"></div>
+    </div>
+  </body>
+  <script type="text/javascript" src="/scripts/localstorage.js"></script>
+  <script type="text/javascript" src="/scripts/scripts.js"></script>
+</html>
