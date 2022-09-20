@@ -136,6 +136,8 @@ async function addLink() {
   nickname.value = "";
   content.value = "";
   category.value = "";
+
+  displayMessage("", "");
 }
 
 function displayMessage(message, color) {
