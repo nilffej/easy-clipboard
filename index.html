@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=yes"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,31 +15,40 @@
     <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
     <link rel="stylesheet" href="./static/styles.css" />
     <title>Easy Clipboard</title>
-    <style>
-      .btn {
-        width: 130px;
-      }
-    </style>
   </head>
   <body>
     <div id="content" class="container">
-      <div id="link-adder">
-        <input id="nickname-input" placeholder="Nickname" />
-        <input id="copy-content-input" placeholder="Content to copy" />
-        <input id="category-input" list="categories-dropdown" placeholder="Folder"/>
-        <datalist id="categories-dropdown">
-        </datalist>
-        <button class="btn btn-success" id="add-link-button">Add</button>
+      <div class="row" id="link-adder">
+        <div class="col-sm-3">
+          <input id="nickname-input" placeholder="Nickname" />
+        </div>
+        <div class="col-sm-4">
+          <input id="copy-content-input" placeholder="Content to copy" />
+        </div>
+        <div class="col-sm-3">
+          <input
+            id="category-input"
+            list="categories-dropdown"
+            placeholder="Folder"
+          />
+          <datalist id="categories-dropdown">
+          </datalist>
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-success" id="add-link-button">Add</button>
+        </div>
       </div>
       <div id="message"></div>
       <div id="how-to">
         How to use Easy Clipboard:
         <ul>
-            <li>Add a clipboard item using the input fields above</li>
-            <li>Left click on buttons to copy saved content (no need to Cmd+C)</li>
-            <li>Right click on individual buttons to delete them</li>
-            <li>Right click on folder headers to delete whole sets of buttons</li>
-          </ul>     
+          <li>Add a clipboard item using the input fields above</li>
+          <li>
+            Left click on buttons to copy saved content (no need to Cmd+C)
+          </li>
+          <li>Right click on individual buttons to delete them</li>
+          <li>Right click on folder headers to delete whole sets of buttons</li>
+        </ul>
       </div>
       <input id="copy-content" readonly />
       <div id="categories-list"></div>

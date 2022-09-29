@@ -29,10 +29,11 @@ async function buildCategoryContents(category) {
     const header = document.createElement("div");
     const collapsable = document.createElement("div");
     collapsable.id = `collapsable-${category}`;
+    collapsable.className = 'collapsable'
 
     // Build header
     header_text = document.createElement("h5");
-    header_text.innerHTML = category;
+    header_text.textContent = category;
     header.appendChild(header_text);
     header.appendChild(document.createElement("hr"))
     header.style.width = "100%";
@@ -48,7 +49,7 @@ async function buildCategoryContents(category) {
 
     buildButtons(category, collapsable.id);
   } else {
-    collapsable.innerHTML = "";
+    collapsable.innerHTML = '';
     buildButtons(category, `collapsable-${category}`);
   }
 }
@@ -75,14 +76,17 @@ function buildButtons(category, id) {
   const linksKeys = Object.keys(links[category]);
   for (let r = 0; r < linksKeys.length; r += 3) {
     const row = document.createElement("div")
-    row.className = "button-row"
+    row.className = "row button-row"
 
     for (let c = r; c < r + 3 && c < linksKeys.length; ++c) {
       const buttonName = linksKeys[c];
 
+      const col = document.createElement("div");
+      col.className = "col-sm-4";
+
       const button = document.createElement("button");
       button.className = "btn btn-dark";
-      button.innerHTML = buttonName;
+      button.textContent = buttonName;
       button.onclick = () => copyURL(category, buttonName);
 
       button.addEventListener("contextmenu", function(e) {
@@ -90,7 +94,9 @@ function buildButtons(category, id) {
         removeButton(buttonName, category);
       });
 
-      row.appendChild(button);
+      col.appendChild(button)
+
+      row.appendChild(col);
     }
 
     collapsable.appendChild(row);
@@ -106,7 +112,6 @@ function populateCategoryDropdown() {
   categories.forEach((category) => {
     const option = document.createElement("option")
     option.value = category;
-    option.innerHTML= category;
     dropdown.appendChild(option);
   });
 
@@ -143,7 +148,7 @@ async function addLink() {
 function displayMessage(message, color) {
   const nickname = document.getElementById("message");
   nickname.style.color = color;
-  nickname.innerHTML = message;
+  nickname.textContent = message;
   return;
 }
 

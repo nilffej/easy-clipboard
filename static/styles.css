@@ -2,10 +2,15 @@ body {
     margin: 20px;
 }
 
-#link-adder {
+#link-adder > [class*="col-sm"] {
+    padding: 4px;
     display: flex;
-    gap: 8px;
-    width: 640px;
+    justify-content: center;
+}
+
+#link-adder > [class*="col-sm"] > input {
+    width: 100%;
+    height: 36px;
 }
 
 #message {
@@ -26,7 +31,12 @@ select {
 
 #copy-content {
     margin-bottom: 24px;
-    width: 640px;
+    width: 60%;
+}
+@media only screen and (max-width: 768px) {
+    #copy-content {
+        width: 100%;
+    }
 }
 
 #content {
@@ -36,24 +46,32 @@ select {
 }
 
 .category {
-    width: 640px;
+    width: 60%;
+}
+@media only screen and (max-width: 768px) {
+    .category {
+        width: 100%;
+    }
 }
 
 #categories-list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 640px;
+    width: 100%;
 }
 
-.button-row {
+.button-row > .col-sm-4 {
     display: flex;
-    gap: 24px;
-    width: 640px;
-    margin-bottom: 16px;
     justify-content: center;
+    padding: 4px 8px 4px 8px;
 }
 
 .btn {
-    width: 160px !important;
+    width: 100%;
+}
+
+.collapsable {
+    padding-left: 12px;
+    padding-right: 12px;
 }
