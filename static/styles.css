@@ -25,13 +25,18 @@ select {
     width: 240px;
 }
 
-#copy-content-input {
+#copy-content, #copy-content-input {
     width: 100%;
+    resize: none;
+    height: 36px;
+    padding: 4px;
 }
 
 #copy-content {
     margin-bottom: 24px;
     width: 60%;
+    resize: vertical;
+    min-height: 36px;
 }
 @media only screen and (max-width: 768px) {
     #copy-content {
