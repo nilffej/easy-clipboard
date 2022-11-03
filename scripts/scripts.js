@@ -19,9 +19,9 @@ async function buildCategoryContents(category) {
 
   if (!collapsable) {
     const categories_list = document.getElementById("categories-list");
-    
+
     // Build wrapping div
-    const categoryDiv = document.createElement("div")
+    const categoryDiv = document.createElement("div");
     categoryDiv.id = `category-${category}`;
     categoryDiv.className = "category";
 
@@ -29,19 +29,14 @@ async function buildCategoryContents(category) {
     const header = document.createElement("div");
     const collapsable = document.createElement("div");
     collapsable.id = `collapsable-${category}`;
-    collapsable.className = 'collapsable'
+    collapsable.className = "collapsable";
 
     // Build header
     header_text = document.createElement("h5");
     header_text.textContent = category;
     header.appendChild(header_text);
-    header.appendChild(document.createElement("hr"))
+    header.appendChild(document.createElement("hr"));
     header.style.width = "100%";
-
-    header_text.addEventListener("contextmenu", async function (e) {
-      e.preventDefault();
-      await removeCategoryDiv(category);
-    });
 
     categoryDiv.appendChild(header);
     categoryDiv.appendChild(collapsable);
@@ -49,14 +44,14 @@ async function buildCategoryContents(category) {
 
     buildButtons(category, collapsable.id);
   } else {
-    collapsable.innerHTML = '';
+    collapsable.innerHTML = "";
     buildButtons(category, `collapsable-${category}`);
   }
 }
 
 async function removeCategoryDiv(category) {
   await deleteCategory(category);
-  delete links[category]
+  delete links[category];
   document.getElementById(`category-${category}`).remove();
   populateCategoryDropdown();
 }
@@ -72,11 +67,13 @@ async function removeButton(buttonName, category) {
 }
 
 function buildButtons(category, id) {
+  const deleteToggle = document.getElementById("delete-toggle");
+
   const collapsable = document.getElementById(id);
   const linksKeys = Object.keys(links[category]);
   for (let r = 0; r < linksKeys.length; r += 3) {
-    const row = document.createElement("div")
-    row.className = "row button-row"
+    const row = document.createElement("div");
+    row.className = "row button-row";
 
     for (let c = r; c < r + 3 && c < linksKeys.length; ++c) {
       const buttonName = linksKeys[c];
@@ -85,17 +82,22 @@ function buildButtons(category, id) {
       col.className = "col-sm-4";
 
       const button = document.createElement("button");
-      button.className = "btn btn-dark";
+      button.className = "btn btn-dark copy-button";
       button.textContent = buttonName;
-      button.onclick = () => copyURL(category, buttonName);
+      if (deleteToggle.checked) {
+        button.style.backgroundColor = "#dc3545";
+        button.style.borderColor = "#dc3545";
+      }
 
-      button.addEventListener("contextmenu", function(e) {
-        e.preventDefault();
-        removeButton(buttonName, category);
-      });
+      button.onclick = () => {
+        if (!button.style.backgroundColor) {
+          copyURL(category, buttonName);
+        } else {
+          removeButton(buttonName, category);
+        }
+      };
 
-      col.appendChild(button)
-
+      col.appendChild(button);
       row.appendChild(col);
     }
 
@@ -107,19 +109,19 @@ function populateCategoryDropdown() {
   const dropdown = document.getElementById("categories-dropdown");
   const categories = Object.keys(links);
 
-  dropdown.innerHTML = '';
+  dropdown.innerHTML = "";
 
   categories.forEach((category) => {
-    const option = document.createElement("option")
+    const option = document.createElement("option");
     option.value = category;
     dropdown.appendChild(option);
   });
 
   if (categories.length) {
-      dropdown.defaultValue = categories[0];
-    } else {
-      dropdown.defaultValue = "New Category";
-    }
+    dropdown.defaultValue = categories[0];
+  } else {
+    dropdown.defaultValue = "New Category";
+  }
 }
 
 async function addLink() {
@@ -128,7 +130,7 @@ async function addLink() {
   const category = document.getElementById("category-input");
 
   if (!(nickname.value && content.value && category.value)) {
-    displayMessage("All fields are required!", "red");
+    displayMessage("All fields are required!");
     return;
   }
 
@@ -142,14 +144,32 @@ async function addLink() {
   content.value = "";
   category.value = "";
 
-  displayMessage("", "");
+  displayMessage("");
 }
 
-function displayMessage(message, color) {
+function displayMessage(message) {
   const nickname = document.getElementById("message");
-  nickname.style.color = color;
   nickname.textContent = message;
   return;
+}
+
+function toggleDelete(e) {
+  const buttons = Array.from(document.getElementsByClassName("copy-button"));
+  const formWrapper = document.getElementById("form-wrapper");
+
+  if (e.target.checked) {
+    formWrapper.disabled = true;
+    buttons.forEach((btn) => {
+      btn.style.backgroundColor = "#dc3545";
+      btn.style.borderColor = "#dc3545";
+    });
+  } else {
+    formWrapper.disabled = false;
+    buttons.forEach((btn) => {
+      btn.style.backgroundColor = null;
+      btn.style.borderColor = null;
+    });
+  }
 }
 
 async function main() {
@@ -157,11 +177,13 @@ async function main() {
   links = await getAllData();
 
   buildSections();
-  populateCategoryDropdown()
+  populateCategoryDropdown();
 
   const addLinkButton = document.getElementById("add-link-button");
   addLinkButton.onclick = () => addLink();
 
+  const deleteToggle = document.getElementById("delete-toggle");
+  deleteToggle.onclick = (e) => toggleDelete(e);
 }
 
 main();

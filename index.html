@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,31 +17,45 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/idb@7/build/umd.js"></script>
     <link rel="stylesheet" href="./static/styles.css" />
+    <link rel="stylesheet" href="./static/toggle.css" />
     <title>Easy Clipboard</title>
   </head>
   <body>
     <div id="content" class="container">
-      <div class="row" id="link-adder">
-        <div class="col-sm-3">
-          <input id="nickname-input" placeholder="Nickname" />
+      <fieldset id="form-wrapper">
+        <div class="row" id="link-adder">
+          <div class="col-sm-3">
+            <input id="nickname-input" placeholder="Nickname" />
+          </div>
+          <div class="col-sm-4">
+            <textarea
+              id="copy-content-input"
+              placeholder="Content to copy"
+            ></textarea>
+          </div>
+          <div class="col-sm-3">
+            <input
+              id="category-input"
+              list="categories-dropdown"
+              placeholder="Folder"
+            />
+            <datalist id="categories-dropdown"> </datalist>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-success" id="add-link-button">Add</button>
+          </div>
         </div>
-        <div class="col-sm-4">
-          <textarea id="copy-content-input" placeholder="Content to copy"></textarea>
-        </div>
-        <div class="col-sm-3">
-          <input
-            id="category-input"
-            list="categories-dropdown"
-            placeholder="Folder"
-          />
-          <datalist id="categories-dropdown">
-          </datalist>
-        </div>
-        <div class="col-sm-2">
-          <button class="btn btn-success" id="add-link-button">Add</button>
-        </div>
-      </div>
+      </fieldset>
       <div id="message"></div>
+      <div id="delete-toggle-div">
+        <p class="text-success">Add Mode</p>
+        <label class="toggle-div" for="delete-toggle">
+          <input id="delete-toggle" type="checkbox" />
+          <span class="toggle"></span>
+        </label>
+        <p class="text-danger">Delete Mode</p>
+      </div>
+
       <div id="how-to">
         How to use Easy Clipboard:
         <ul>
@@ -46,11 +63,10 @@
           <li>
             Left click on buttons to copy saved content (no need to Cmd+C)
           </li>
-          <li>Right click on individual buttons to delete them</li>
-          <li>Right click on folder headers to delete whole sets of buttons</li>
+          <li>On Delete Mode, left click buttons to delete them</li>
         </ul>
       </div>
-      <textarea id="copy-content" readonly ></textarea>
+      <textarea id="copy-content" readonly></textarea>
       <div id="categories-list"></div>
     </div>
   </body>

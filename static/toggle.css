@@ -1,0 +1,41 @@
+.toggle-div {
+  display: inline-block;
+  position: relative;
+  height: 24px;
+  width: 46px;
+}
+
+.toggle-div input {
+  display: none;
+}
+
+.toggle {
+  display: inline-block;
+  position: absolute;
+  background-color: #28a745;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.toggle:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  top: 3px;
+  left: 3px;
+  height: 18px;
+  width: 18px;
+  transition: 0.2s;
+}
+
+input:checked + .toggle {
+  background-color: #dc3545;
+}
+
+input:checked + .toggle:before {
+  transform: translateX(22px);
+}
